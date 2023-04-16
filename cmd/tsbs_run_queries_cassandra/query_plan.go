@@ -71,9 +71,9 @@ func (qp *QueryPlanWithServerAggregation) Execute(session *gocql.Session) ([]CQL
 			for iter.Scan(&x) {
 				agg.Put(x)
 			}
-			if err := iter.Close(); err != nil {
-				return nil, err
-			}
+			// if err := iter.Close(); err != nil {
+			// 	return nil, err
+			// }
 		}
 		results = append(results, CQLResult{TimeInterval: k, Values: []float64{agg.Get()}})
 	}
